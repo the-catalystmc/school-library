@@ -1,5 +1,5 @@
 class Corrector
-    def initialize
-        
-    end
+  def correct_name
+    name.capitalize.slice(0..9)
+  end
 end
