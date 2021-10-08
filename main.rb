@@ -84,8 +84,33 @@ class App
     book_title = gets.chomp
     print 'Author: '
     book_author = gets.chomp
-    @books.push(Book.new(book_title, book_author))
+    @books.push(Book.new(title: book_title, author: book_author))
     puts 'Book created successfully'
+  end
+
+  def create_rental
+    if $books.length.zero? || $people.length.zero?
+      puts 'There are no books and/or people created!'
+    else
+      puts 'Select a book from the following list by number'
+      $books.each_with_index do |e, idx|
+        puts "#{idx}) Title: \"#{e.title}\", Author: #{e.author}"
+      end
+      book_number = gets.chomp.to_i
+      puts
+  
+      puts 'Select a person from the following list by number (not id)'
+      $people.each_with_index do |e, idx|
+        puts "#{idx}) [#{e.class}] Name: #{e.name}, ID: #{e.id}, Age: #{e.age}"
+      end
+      person_number = gets.chomp.to_i
+  
+      puts
+      print 'Date: '
+      rental_date = gets.chomp
+      Rental.new(rental_date, $people[person_number], $books[book_number])
+      puts 'Rental created successfully'
+    end
   end
 
   def run
