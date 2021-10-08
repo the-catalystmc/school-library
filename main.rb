@@ -46,6 +46,37 @@ class App
     end
   end
 
+  def create_person
+    print 'Do you want to create a student (1) or a teacher (2)? [Input the number]: '
+    person_type = gets.chomp
+    print 'Age: '
+    person_age = gets.chomp.to_i
+    print 'Name: '
+    person_name = gets.chomp
+
+    case person_type
+    when '1'
+      print 'Has parent permission? [Y/N]: '
+      has_permission = gets.chomp
+      case has_permission
+      when 'y', 'Y'
+        has_perm_bool = true
+      when 'n', 'N'
+        has_perm_bool = false
+      end
+
+      @@people.push(Student.new(person_age, person_name, has_perm_bool))
+      puts 'Person created successfully'
+    when '2'
+      print 'Specialization: '
+      specialization = gets.chomp
+      @@people.push(Teacher.new(specialization, person_age, person_name))
+      puts 'Person created successfully'
+    else
+      puts 'Please, select a correct person type'
+    end
+  end
+
   def run
     loop do
       case choose_option
