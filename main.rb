@@ -113,6 +113,30 @@ class App
     end
   end
 
+  def list_rentals
+    print 'ID of person: '
+    person_id = gets.chomp.to_i
+
+    person_found = false
+    person_selected = nil
+    @people.each do |e|
+      if e.id == person_id
+        person_found = true
+        person_selected = e
+      end
+    end
+
+    if person_found == false
+      puts 'ID does not exist!'
+    elsif person_selected.rentals.length.zero?
+      puts 'This person does not have rentals'
+    else
+      person_selected.rentals.each do |e|
+        puts "Date: #{e.date}, Book \"#{e.book.title}\" by #{e.book.author}"
+      end
+    end
+  end
+
   def run
     loop do
       case choose_option
@@ -127,7 +151,7 @@ class App
       when '5'
         create_rental
       when '6'
-        list_rentals_by_id
+        list_rentals
       when '7'
         exit_program = true
       else
