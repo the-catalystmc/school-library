@@ -72,11 +72,20 @@ class App
     when '2'
       print 'Specialization: '
       specialization = gets.chomp
-      @people.push(Teacher.new(specialization, person_age, person_name))
+      @people.push(Teacher.new(specialization: specialization, age: person_age, name: person_name))
       puts 'Person created successfully'
     else
       puts 'Please, select a correct person type'
     end
+  end
+
+  def create_book
+    print 'Title: '
+    book_title = gets.chomp
+    print 'Author: '
+    book_author = gets.chomp
+    @books.push(Book.new(book_title, book_author))
+    puts 'Book created successfully'
   end
 
   def run
