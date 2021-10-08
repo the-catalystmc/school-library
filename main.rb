@@ -60,12 +60,12 @@ class App
       has_permission = gets.chomp
       case has_permission
       when 'y', 'Y'
-        has_perm_bool = true
+        has_perm = true
       when 'n', 'N'
-        has_perm_bool = false
+        has_perm = false
       end
 
-      @@people.push(Student.new(person_age, person_name, has_perm_bool))
+      @@people.push(Student.new(person_age, person_name, has_perm))
       puts 'Person created successfully'
     when '2'
       print 'Specialization: '
