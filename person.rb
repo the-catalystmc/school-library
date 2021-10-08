@@ -2,7 +2,7 @@ require './corrector'
 require './rental'
 
 class Person
-  def initialize(id, age, name: 'unknown', parent_permission: true)
+  def initialize(id, age, name = 'unknown', parent_permission: true)
     @id = id
     @name = name
     @age = age
