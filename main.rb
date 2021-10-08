@@ -4,9 +4,11 @@ require './book'
 require './rental'
 
 class App
-  @@books = []
-  @@people = []
-  @exit_program = false
+  def initialize
+    @books = []
+    @people = []
+    @exit_program = false
+  end
 
   puts 'Welcome to School Library App!'
 
@@ -27,20 +29,20 @@ class App
   end
 
   def list_books
-    if @@books.empty?
+    if @books.empty?
       puts 'There are no books created!'
     else
-      @@books.each do |e|
+      @books.each do |e|
         puts "Title: \"#{e.title}\", Author: #{e.author}"
       end
     end
   end
 
   def list_people
-    if @@people.empty?
+    if @people.empty?
       puts 'There are no people created!'
     else
-      @@people.each do |e|
+      @people.each do |e|
         puts "[#{e.class}] Name: #{e.name}, ID: #{e.id}, Age: #{e.age}"
       end
     end
@@ -65,12 +67,12 @@ class App
         has_perm = false
       end
 
-      @@people.push(Student.new(person_age, person_name, has_perm))
+      @people.push(Student.new(age: person_age, name: person_name, parent_permission: has_perm))
       puts 'Person created successfully'
     when '2'
       print 'Specialization: '
       specialization = gets.chomp
-      @@people.push(Teacher.new(specialization, person_age, person_name))
+      @people.push(Teacher.new(specialization, person_age, person_name))
       puts 'Person created successfully'
     else
       puts 'Please, select a correct person type'
