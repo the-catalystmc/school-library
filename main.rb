@@ -4,16 +4,15 @@ require './book'
 require './rental'
 
 class App
-  @no_of_customers = 0
-  @books = []
-  @people = []
+  @@books = []
+  @@people = []
   @exit_program = false
 
   puts 'Welcome to School Library App!'
 
   def choose_option
     puts
-    puts 'Please choose an option by enterin a number:'
+    puts 'Please choose an option by entering a number:'
     puts '1 - List all books'
     puts '2 - List all people'
     puts '3 - Create a person'
@@ -25,6 +24,26 @@ class App
 
     print 'Option: '
     gets.chomp
+  end
+
+  def list_books
+    if @@books.empty?
+      puts 'There are no books created!'
+    else
+      @@books.each do |e|
+        puts "Title: \"#{e.title}\", Author: #{e.author}"
+      end
+    end
+  end
+
+  def list_people
+    if @@people.empty?
+      puts 'There are no people created!'
+    else
+      @@people.each do |e|
+        puts "[#{e.class}] Name: #{e.name}, ID: #{e.id}, Age: #{e.age}"
+      end
+    end
   end
 
   def run
