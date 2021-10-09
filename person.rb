@@ -2,17 +2,17 @@ require './corrector'
 require './rental'
 
 class Person
-  def initialize(id, age, name: 'unknown', parent_permission: true)
-    @id = id
-    @name = name
-    @age = age
-    @parent_permission = parent_permission
-    @corrector = Corrector.new
-    @rentals = []
-  end
-
   attr_reader :id
   attr_accessor :name, :age, :rentals
+
+  def initialize(age:, name: 'unknown', parent_permission: true)
+    @id = Random.rand(1..1000)
+    @corrector = Corrector.new
+    @name = validate_name(name)
+    @age = age
+    @parent_permission = parent_permission
+    @rentals = []
+  end
 
   private
 
